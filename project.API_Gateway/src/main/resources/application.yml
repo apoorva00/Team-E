@@ -1,0 +1,75 @@
+server:
+ 
+  port: 8999
+ 
+ 
+ 
+eureka:
+ 
+  instance:
+ 
+    hostname: localhost  
+ 
+ 
+ 
+spring:
+ 
+  application:
+ 
+    name: Gateway_API_Service
+ 
+    
+ 
+  cloud:
+ 
+    gateway:
+ 
+      routes:
+      
+         - id: user-service
+ 
+           uri: lb://user-service
+ 
+           predicates:
+ 
+            - Path=/api1/**
+
+         - id: return-service
+ 
+           uri: lb://return-service
+ 
+           predicates:
+ 
+            - Path=/api2/**
+            
+         - id: Orders-service
+ 
+           uri: lb://Orders-service
+ 
+           predicates:
+ 
+            - Path=//GreatOutdoors/**
+            
+         - id: Payment-service
+ 
+           uri: lb://Payment-service
+ 
+           predicates:
+ 
+            - Path=/payment/**
+            
+         - id: Customer-service
+ 
+           uri: lb://Customer-service
+ 
+           predicates:
+ 
+            - Path=/GreatOutdoors/Customer/**
+            
+         - id: product-service
+ 
+           uri: lb://product-service
+ 
+           predicates:
+ 
+            - Path=/product1/**
